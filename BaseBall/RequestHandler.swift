@@ -54,8 +54,7 @@ extension RequestHandler {
         guard let input = readLine() else {
             throw RequestHandlerError.readLineFailed
         }
+        
         return input
     }
 }
-
-

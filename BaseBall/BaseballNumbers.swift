@@ -1,33 +1,16 @@
 //
-//  BaseBallGameManager.swift
+//  BaseballNumbers.swift
 //  BaseBall
 //
-//  Created by t2023-m0072 on 11/4/24.
+//  Created by t2023-m0072 on 11/5/24.
 //
 
 import Foundation
 
-enum BaseBallError: Error, CustomStringConvertible {
-    
-    var description: String {
-        switch self {
-        case .invalidNumber: return "부적합한 숫자"
-        case .baseBallNumbersLengthIncorrect(let count): return "\(count)개의 숫자를 입력해야 합니다."
-        case .baseBallNumbersFirstIsZero: return "첫번째 숫자는 0이 될 수 없습니다."
-        default: return "알 수 없는 에러"
-        }
-    }
-    
-    case invalidNumber
-    case baseBallNumbersLengthIncorrect(count: Int)
-    case baseBallNumbersFirstIsZero
-    case unknown
-}
-
-struct BaseBallNumbers {
+struct BaseballNumbers {
     
     private let numbers: [Int]
-    private static let countOfNumbers: Int = 3
+    private static var countOfNumbers: Int = 3
     
     private static func checkCountOfNumbers(_ numbers: [Int]) -> Bool {
         numbers.count == Self.countOfNumbers
@@ -37,18 +20,19 @@ struct BaseBallNumbers {
         numbers[0] != 0
     }
     
+    
     init(_ numbers: [Int]) throws {
         guard Self.checkCountOfNumbers(numbers) else {
-            throw BaseBallError.baseBallNumbersLengthIncorrect(count: Self.countOfNumbers)
+            throw BaseballError.baseballNumbersLengthIncorrect(count: Self.countOfNumbers)
         }
-        
         guard Self.checkFirstNumberIsNotZero(numbers) else {
-            throw BaseBallError.baseBallNumbersFirstIsZero
+            throw BaseballError.baseballNumbersFirstIsZero
         }
         
         self.numbers = numbers
     }
 }
+
 
 struct BaseBallResult: CustomStringConvertible {
     
@@ -65,3 +49,5 @@ struct BaseBallResult: CustomStringConvertible {
         }
     }
 }
+
+
