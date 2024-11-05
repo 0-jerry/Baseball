@@ -7,31 +7,34 @@
 
 import Foundation
 
-struct BaseballNumbers {
+struct ShootRequest {
     
-    private let numbers: [Int]
-    private static var countOfNumbers: Int = 3
+    let numbers: [Int]
     
+    //예외처리 숫자의 갯수 확인
     private static func checkCountOfNumbers(_ numbers: [Int]) -> Bool {
-        numbers.count == Self.countOfNumbers
+        numbers.count == GameRuler.countOfBalls
     }
     
-    private static func checkFirstNumberIsNotZero(_ numbers: [Int]) -> Bool {
-        numbers[0] != 0
+//    숫자의
+    private static func checkFirstNumberIsZero(_ numbers: [Int]) -> Bool {
+        numbers[0] == 0
     }
     
     
     init(_ numbers: [Int]) throws {
         guard Self.checkCountOfNumbers(numbers) else {
-            throw BaseballError.baseballNumbersLengthIncorrect(count: Self.countOfNumbers)
+            throw ShootRequestError.baseballNumbersLengthIncorrect
         }
-        guard Self.checkFirstNumberIsNotZero(numbers) else {
-            throw BaseballError.baseballNumbersFirstIsZero
+        guard !Self.checkFirstNumberIsZero(numbers) else {
+            throw ShootRequestError.baseballNumbersFirstIsZero
         }
         
         self.numbers = numbers
     }
 }
+
+
 
 
 struct BaseBallResult: CustomStringConvertible {
