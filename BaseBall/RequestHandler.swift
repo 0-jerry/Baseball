@@ -4,24 +4,27 @@
 //
 //  Created by t2023-m0072 on 11/5/24.
 //
-
 import Foundation
 
 protocol RequestHandler {
     
     associatedtype Request
-    
+    associatedtype Format
+
     // 첫 인사 메세지 연산 메서드
     func welcomeMessage() -> String
     
     // 안내 메세지 연산 메서드
     func guideMessage() -> String
+        
+    // 요청 생성을 위한 형태로 변환
+    func convertTo(_ input: String) throws -> Format
     
     // 에러 확인 메서드
-    func checkErrors(_ input: String) throws
+    func checkErrors(_ input: Format) throws
     
-    // 요청 형태 반환 메서드
-    func formatting(_ input: String) throws -> Request
+    // 요청 형태 생성 메서드
+    func initRequest(_ input: Format) throws -> Request
 }
 
 
@@ -39,8 +42,10 @@ extension RequestHandler {
             
             do {
                 let input = try readInput()
-                try checkErrors(input)
-                let request = try formatting(input)
+                let convertedInput = try convertTo(input)
+
+                try checkErrors(convertedInput)
+                let request = try initRequest(convertedInput)
                 return request
             } catch {
                 let errorMessage = String(describing: error)
