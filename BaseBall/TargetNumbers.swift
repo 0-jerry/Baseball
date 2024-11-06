@@ -14,9 +14,9 @@ struct TargetNumbers {
     let numbers: [Int]
     
     init() {
-        var numbers = Array(Self.numbers.suffix(GameRuler.countOfBalls))
-        if numbers[0] == 0 {
-            numbers.reverse()
+        var numbers = Array(Self.numbers.suffix(GameStatus.countOfBalls))
+        while numbers[0] == 0 {
+            numbers.shuffle()
         }
         
         self.numbers = numbers

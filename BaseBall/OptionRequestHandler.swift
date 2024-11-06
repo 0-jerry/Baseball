@@ -11,12 +11,9 @@ struct OptionRequestHandler: RequestHandler {
     typealias Request = OptionRequest
     typealias Format = Int
 
-    
-    func welcomeMessage() -> String {
-        "환영합니다! 원하시는 번호를 입력해주세요."
-    }
-    
+
     func guideMessage() -> String {
+        let welcomeMessage = "환영합니다! 원하시는 번호를 입력해주세요."
         let allCases = Request.allCases
         var optionMessages: [String] = []
         
@@ -24,7 +21,7 @@ struct OptionRequestHandler: RequestHandler {
             let optionMessage = "\(i+1). \(allCases[i].rawValue)"
             optionMessages.append(optionMessage)
         }
-        return optionMessages.joined(separator: " ")
+        return welcomeMessage + "\n" + optionMessages.joined(separator: " ")
     }
     
     func convertTo(_ input: String) throws -> Format {

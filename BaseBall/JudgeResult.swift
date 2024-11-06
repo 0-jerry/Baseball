@@ -11,19 +11,21 @@ struct JudgeResult: CustomStringConvertible {
     
     private let strike: Int
     private let ball: Int
+    private let countOfBalls: Int = GameStatus.countOfBalls
     
     var description: String {
         if strike == 0 && ball == 0 {
             return "OUT"
         } else if strike == 0 {
-            return "\(ball)B"
+            return "\(ball) 볼"
         } else if ball == 0 {
-            return "\(strike)S"
+            return "\(strike) 스트라이크"
         } else {
-            return "\(strike)S \(ball)B"
+            return "\(strike)스트라이크 | \(ball)볼"
         }
     }
     
+    //이후 예외처리 추가 가능 (숫자의 갯수 체크)
     init(shoot: ShootRequest, target: TargetNumbers) {
         let shootNumbers = shoot.numbers
         let targetNumbers = target.numbers
@@ -40,5 +42,9 @@ struct JudgeResult: CustomStringConvertible {
         
         self.strike = strike
         self.ball = ball
+    }
+    
+    func isWin() -> Bool {
+        strike == countOfBalls
     }
 }

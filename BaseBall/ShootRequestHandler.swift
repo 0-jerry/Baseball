@@ -13,12 +13,8 @@ struct ShootRequestHandler: RequestHandler {
     
     typealias Format = [Int]
     
-    func welcomeMessage() -> String {
-        "< 게임을 시작합니다 >"
-    }
-    
     func guideMessage() -> String {
-        "\(GameRuler.countOfBalls) 자리의 숫자를 입력하세요."
+        "\(GameStatus.countOfBalls) 자리의 숫자를 입력하세요."
     }
     
     func convertTo(_ input: String) throws -> Format {

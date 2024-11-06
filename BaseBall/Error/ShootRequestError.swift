@@ -17,7 +17,7 @@ enum ShootRequestError: Error, CustomStringConvertible {
     var description: String {
         switch self {
         case .invalidNumber: return "부적합한 숫자"
-        case .baseballNumbersLengthIncorrect: return "\(GameRuler.countOfBalls)개의 숫자를 입력해야 합니다."
+        case .baseballNumbersLengthIncorrect: return "\(GameStatus.countOfBalls)개의 숫자를 입력해야 합니다."
         case .baseballNumbersFirstIsZero: return "첫번째 숫자는 0이 될 수 없습니다."
         default: return "알 수 없는 에러"
         }
