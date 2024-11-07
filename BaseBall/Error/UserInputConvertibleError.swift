@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RequestHandlerError: Error, CustomStringConvertible {
+enum UserInputConvertibleError: Error, CustomStringConvertible {
     
     case readLineFailed
     
