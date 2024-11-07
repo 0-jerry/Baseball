@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum OptionRequest: String, CaseIterable {
+//MARK: - 게임 명령 열거형
+enum GameCommand: String, CaseIterable {
     
     case start = "게임 시작하기"
     case history = "게임 기록 보기"
@@ -18,7 +19,7 @@ enum OptionRequest: String, CaseIterable {
         case 1: self = .start
         case 2: self = .history
         case 3: self = .exit
-        default: throw OptionRequsetError.optionRequestInitFailed
+        default: throw GameCommandError.gameCommandInitFailed
         }
     }
 }
