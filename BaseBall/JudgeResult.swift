@@ -6,28 +6,27 @@
 //
 import Foundation
 
-//MARK: - 시도결과 반환용 구조체
+//MARK: - 시도 결과 구조체
 struct JudgeResult: CustomStringConvertible {
     
     private let strike: Int
     private let ball: Int
-    private let countOfBalls: Int = GameStatus.countOfBalls
     
     var description: String {
         if strike == 0 && ball == 0 {
-            return "OUT"
+            return "[OUT]"
         } else if strike == 0 {
-            return "\(ball) 볼"
+            return "[\(ball) 볼]"
         } else if ball == 0 {
-            return "\(strike) 스트라이크"
+            return "[\(strike) 스트라이크]"
         } else {
-            return "\(strike)스트라이크 | \(ball)볼"
+            return "[\(strike) 스트라이크  \(ball) 볼]"
         }
     }
     
-    //이후 예외처리 추가 가능 (숫자의 갯수 체크)
-    init(shoot: ShootRequest, target: TargetNumbers) {
-        let shootNumbers = shoot.numbers
+    //추측 숫자와 목표 숫자를 비교연산하여 판단결과 초기화
+    init(guess: GuessNumber, target: TargetNumber) {
+        let shootNumbers = guess.numbers
         let targetNumbers = target.numbers
         var strike: Int = 0
         var ball: Int = 0
@@ -44,7 +43,8 @@ struct JudgeResult: CustomStringConvertible {
         self.ball = ball
     }
     
+    //결과가 승(All Strike)인지 확인
     func isWin() -> Bool {
-        strike == countOfBalls
+        strike == GameStatus.countOfNumbers
     }
 }
