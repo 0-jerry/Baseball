@@ -64,3 +64,6 @@
 4. 게임 결과는 자동으로 저장되며, 기록 보기 메뉴에서 확인할 수 있습니다.
 
 ## 사용 모습
+
+https://github.com/user-attachments/assets/7bb00014-b9ee-486c-a5d2-c29b2cd0491b
+
