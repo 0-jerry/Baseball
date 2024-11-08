@@ -16,23 +16,26 @@ struct GameManager {
     //게임 프로그램 시작 메서드
     func start() {
         print(welcomeMessage)
-        
         let gameCommandConverter = GameCommandConverter()
         
         while true {
+            //GameCommand를 초기화
             let gameCommand = gameCommandConverter.input()
             let gameCommandMessage = gameCommandMessage(gameCommand)
             print("\n", gameCommandMessage)
             
             switch gameCommand {
+            //숫자 야구 게임 시작
             case .start:
                 var gameRound = GameRound()
                 gameRound.play()
                 
+            //게임 기록 확인
             case .history:
                 let gamehistory = GameHistory.shared
                 print(gamehistory, "\n")
                 
+            //프로그램 종료
             case .exit:
                 return
             }
